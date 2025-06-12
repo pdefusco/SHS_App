@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from pandas.io.json import json_normalize
+#from pandas.io.json import json_normalize
+from pandas import json_normalize
 
 import sparkmonitoring
 
@@ -10,7 +11,7 @@ class PandasClient(object):
         self._client = sparkmonitoring.client(server, port, is_https, api_version)
 
     def _melt_apps(self, app_df):
-        df = json_normalize(
+        df = pd.json_normalize(
             app_df,
             'attempts',
             ['id', 'name']
